@@ -1,0 +1,22 @@
+{
+  "name": "dd-auth-login",
+  "version": "1.0.0",
+  "description": "For DinkTalk's login javascript lib.",
+  "main": "index.js",
+  "scripts": {
+    "build": "webpack --config webpack.config.js"
+  },
+  "author": "leo",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/leochan2017/dd-auth-login/issues"
+  },
+  "homepage": "https://github.com/leochan2017/dd-auth-login#readme",
+  "dependencies": {
+    "lodash": "^4.17.15",
+    "webpack": "^4.37.0"
+  },
+  "devDependencies": {
+    "webpack-cli": "^3.3.6"
+  }
+}

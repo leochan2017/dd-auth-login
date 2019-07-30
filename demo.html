@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta http-equiv="X-UA-Compatible" content="ie=edge" />
+    <title>Demo</title>
+  </head>
+  <body>
+    <!-- <script src="./dist/dd-auth-login.min.js"></script> -->
+    <script src="./src/index.js"></script>
+    <script>
+      console.log('ddAuthLogin', ddAuthLogin)
+
+      ddAuthLogin.login({
+        debug: true,
+        success: function(res) {
+          console.log('免登成功啦啦啦', res)
+        },
+        fail: function(err) {
+          console.log('啊哦，免登失败', err)
+        }
+      })
+    </script>
+  </body>
+</html>
