@@ -61,14 +61,14 @@ ddAuthLogin.login({
 | debug | boolean | 否 | false | 是否开启 debug 模式 |
 | getSignUrl | string | 否 | '/data/labc-biz-dingding/dingTalk/getAuthInfo' | 请求签名地址 |
 | ssoUrl | string | 否 | '/data/labc-biz-dingding/dingTalk/sso' | 请求sso地址 |
+| jsApiList | array | 否 | 所有钉钉 API | 要签名的功能列表 |
 | success | function | 否 | 空 | 成功回调 |
 | fail | function | 否 | 空 | 失败回调 |
-| jsApiList | array | 否 | 所有钉钉 API | 要签名的功能列表 |
 
 
 ## :bulb: 谁在使用
 
-- Landray
+- [Landray](http://www.landray.com.cn)
 
 ## 相关链接
 
