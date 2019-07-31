@@ -171,7 +171,14 @@
           return
         }
 
-        const _config = res.data.content
+        const _config = res.content
+
+        if (!_config) {
+          var str = 'sign: res.content is no data'
+          myObj.debug && logger.error(str)
+          myObj.fail(str)
+          return
+        }
 
         dd.config({
           agentId: _config.agentId,
