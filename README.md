@@ -29,13 +29,13 @@
 如果你是webpack等环境
 
 ```js
-import ddAuthLogin from 'dd-auth-login';
+import ddAuthLogin from 'dd-auth-login'
 ```
 
 如果你是requirejs环境
 
 ```js
-requirejs(['./dist/dd-auth-login.min.js'], function (base) {
+requirejs(['./dist/dd-auth-login.min.js'], function (res) {
     // xxx
 })
 ```
