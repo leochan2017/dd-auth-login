@@ -77,9 +77,6 @@
     options = options || {}
     options.type = (options.type || 'GET').toUpperCase()
     options.dataType = options.dataType || 'json'
-    // var params = formatParams(options.data);
-    // console.log(options.data);
-    // console.log(params);
 
     if (window.XMLHttpRequest) {
       var xhr = new XMLHttpRequest()
@@ -162,7 +159,7 @@
       dataType: 'json',
       success: function(res) {
         res = JSON.parse(res)
-        console.log('后台签名数据返回:', res)
+        myObj.debug && logger.log('后台签名数据返回:', res)
 
         if (!res || typeof res == 'undefined') {
           var str = 'sign ajax is no result'
