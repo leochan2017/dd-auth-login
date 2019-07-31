@@ -43,7 +43,6 @@ requirejs(['./dist/dd-auth-login.min.js'], function (base) {
 ## :kissing_heart: 快速开始
 ```js
 ddAuthLogin.login({
-  debug: true,
   success: function(res) {
   	console.log('免登成功啦啦啦', res)
   },
