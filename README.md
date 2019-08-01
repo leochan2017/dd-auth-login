@@ -17,7 +17,29 @@
 └── demo.html 示例文件
 ```
 
-## :question: 使用指南
+## :rocket: 快速开始
+### 1. 引入钉钉JSAPI
+
+如果你是浏览器环境
+
+```html
+<script src="https://g.alicdn.com/dingding/dingtalk-jsapi/2.7.13/dingtalk.open.js"></script>
+```
+
+
+如果你是webpack等环境
+
+```shell
+npm install dingtalk-jsapi --save
+```
+
+```typescript
+import * as dd from 'dingtalk-jsapi'; // 此方式为整体加载，也可按需进行加载
+```
+
+
+
+### 2. 引入本库
 
 如果你是浏览器环境
 
@@ -27,6 +49,9 @@
 
 
 如果你是webpack等环境
+```shell
+npm i dd-auth-login
+```
 
 ```js
 import ddAuthLogin from 'dd-auth-login'
@@ -40,7 +65,8 @@ requirejs(['./dist/dd-auth-login.min.js'], function (res) {
 })
 ```
 
-## :rocket: 快速开始
+### 3. 调用本库
+
 ```js
 ddAuthLogin.login({
   success: function(res) {
