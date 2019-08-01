@@ -203,22 +203,24 @@ function _getSign() {
 }
 
 /**
- * 判断是否钉钉环境
+ * 钉钉环境检查
+ * false: 在钉钉环境
+ * 有值 | true : 非钉钉环境
  */
-function _isDd() {
-  var flag = true
-  if (typeof dd === 'undefined') flag = false
-  return flag
+function _isNotDd() {
+  if (typeof dd === 'undefined') return '请先引入钉钉的JSAPI再调用本库蛤'
+  if (!dd.version) return '非钉钉环境本库不会运行哦'
+  return false
 }
 
 /**
  * 初始化函数
  */
 export function login(options) {
-  if (!_isDd()) {
-    var str = '请先引入 dd.js 再调用本库蛤'
-    logger.error(str)
-    myObj.fail(str)
+  var ndd = _isNotDd()
+  if (ndd) {
+    logger.error(ndd)
+    myObj.fail(ndd)
     return
   }
 
