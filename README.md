@@ -69,25 +69,25 @@ ddAuthLogin.login({
 signUrl接口返回数据如下:
 ```js
 {
-	content: {
-		agentId: '微应用ID',
+  content: {
+    agentId: '微应用ID',
     corpId: '企业ID',
     timeStamp: '生成签名的时间戳',
     nonceStr: '生成签名的随机串',
     signature: '签名',
     hasLogin: '如果已经登录，则返回true，此时不会调用sso'
-	},
-	message: '接口调用成功',
-	code: 200
+  },
+  message: '接口调用成功',
+  code: 200
 }
 ```
 
 ssoUrl接口返回数据如下:
 ```js
 {
-	content: {},
-	message: '接口调用成功',
-	code: 200
+  content: {},
+  message: '接口调用成功',
+  code: 200
 }
 ```
 
