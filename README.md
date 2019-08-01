@@ -17,7 +17,7 @@
 └── demo.html 示例文件
 ```
 
-## :rocket: 使用指南
+## :question: 使用指南
 
 如果你是浏览器环境
 
@@ -40,7 +40,7 @@ requirejs(['./dist/dd-auth-login.min.js'], function (res) {
 })
 ```
 
-## :kissing_heart: 快速开始
+## :rocket: 快速开始
 ```js
 ddAuthLogin.login({
   success: function(res) {
@@ -65,10 +65,38 @@ ddAuthLogin.login({
 | fail | function | 否 | 空 | 失败回调 |
 
 
-## :bulb: 谁在使用
+## :loudspeaker: 接口说明(给后端同学看)
+signUrl接口返回数据如下:
+```js
+{
+	content: {
+		agentId: '微应用ID',
+    corpId: '企业ID',
+    timeStamp: '生成签名的时间戳',
+    nonceStr: '生成签名的随机串',
+    signature: '签名',
+    hasLogin: '如果已经登录，则返回true，此时可以不用调用sso'
+	},
+	message: '接口调用成功',
+	code: 200
+}
+```
+
+ssoUrl接口返回数据如下:
+```js
+{
+	content: {},
+	message: '接口调用成功',
+	code: 200
+}
+```
+
+
+## :couple: 谁在使用
 
 - [Landray](http://www.landray.com.cn)
 
-## 相关链接
+
+## :see_no_evil: 相关链接
 
 - [钉钉开放平台](https://open-doc.dingtalk.com/)
