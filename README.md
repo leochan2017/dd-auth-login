@@ -44,10 +44,10 @@ requirejs(['./dist/dd-auth-login.min.js'], function (res) {
 ```js
 ddAuthLogin.login({
   success: function(res) {
-  	console.log('免登成功啦啦啦', res)
+    console.log('免登成功啦啦啦', res)
   },
   fail: function(err) {
-  	console.log('啊哦，免登失败', err)
+    console.log('啊哦，免登失败', err)
   }
 })
 ```
