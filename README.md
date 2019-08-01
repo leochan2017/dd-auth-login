@@ -58,7 +58,7 @@ ddAuthLogin.login({
 | 参数名 | 类型 | 必填 | 默认值 | 说明 |
 | ----- | --- | ---- | ----- | --- |
 | debug | boolean | 否 | false | 是否开启 debug 模式 |
-| getSignUrl | string | 否 | '/data/labc-biz-dingding/dingTalk/getAuthInfo' | 请求签名地址 |
+| signUrl | string | 否 | '/data/labc-biz-dingding/dingTalk/getAuthInfo' | 请求签名地址 |
 | ssoUrl | string | 否 | '/data/labc-biz-dingding/dingTalk/sso' | 请求sso地址 |
 | jsApiList | array | 否 | 所有钉钉 API | 要签名的功能列表 |
 | success | function | 否 | 空 | 成功回调 |
