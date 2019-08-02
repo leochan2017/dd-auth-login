@@ -10,8 +10,12 @@ var myObj = {
   debug: false,
   // 请求签名地址
   signUrl: '/data/labc-biz-dingding/dingTalk/getAuthInfo',
+  // 请求签名参数名称
+  signParamName: 'url',
   // 请求sso地址
   ssoUrl: '/data/labc-biz-dingding/dingTalk/sso',
+  // 请求sso参数名称
+  ssoParamName: 'authCode',
   // 成功回调
   success: _noop,
   // 失败回调
@@ -116,7 +120,7 @@ function _ssoLogin(corpId) {
         }
 
         _ajax({
-          url: myObj.ssoUrl + '?authCode=' + d.code,
+          url: myObj.ssoUrl + '?' + myObj.ssoParamName + '=' + d.code,
           type: 'GET',
           data: null,
           dataType: 'json',
@@ -148,7 +152,7 @@ function _ssoLogin(corpId) {
  */
 function _getSign() {
   _ajax({
-    url: myObj.signUrl + '?url=' + location.href,
+    url: myObj.signUrl + '?' + myObj.signParamName + '=' + location.href,
     type: 'GET',
     data: '',
     dataType: 'json',
@@ -240,8 +244,16 @@ export function login(options) {
     myObj.signUrl = options.signUrl
   }
 
+  if (options.signParamName) {
+    myObj.signParamName = options.signParamName
+  }
+
   if (options.ssoUrl) {
     myObj.ssoUrl = options.ssoUrl
+  }
+
+  if (options.ssoParamName) {
+    myObj.ssoParamName = options.ssoParamName
   }
 
   if (options.jsApiList) {
@@ -261,9 +273,9 @@ export function login(options) {
   _getSign()
 }
 
-// 为了让 import ddAuthLogin from 'dd-auth-login' 生效
-export default { login }
-
 // export function otherAIP() {
 //   return xxx
 // }
+
+// 为了让 import ddAuthLogin from 'dd-auth-login' 生效
+export default { login }

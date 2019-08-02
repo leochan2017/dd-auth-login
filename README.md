@@ -86,14 +86,20 @@ ddAuthLogin.login({
 | ----- | --- | ---- | ----- | --- |
 | debug | boolean | 否 | false | 是否开启 debug 模式 |
 | signUrl | string | 否 | '/data/labc-biz-dingding/dingTalk/getAuthInfo' | 请求签名地址 |
+| signParamName | string | 否 | 'url' | 请求签名参数名称 |
 | ssoUrl | string | 否 | '/data/labc-biz-dingding/dingTalk/sso' | 请求sso地址 |
+| ssoParamName | string | 否 | 'authCode' | 请求sso参数名称 |
 | jsApiList | array | 否 | 所有钉钉 API | 要签名的功能列表 |
 | success | function | 否 | 空 | 成功回调 |
 | fail | function | 否 | 空 | 失败回调 |
 
 
 ## :loudspeaker: 接口说明(给后端同学看)
-signUrl接口返回数据如下:
+#### signUrl接口
+请求类型: GET
+传入参数: url = 'xxxxx(当前页面url)'
+返回数据:
+
 ```js
 {
   content: {
@@ -109,7 +115,11 @@ signUrl接口返回数据如下:
 }
 ```
 
-ssoUrl接口返回数据如下:
+#### ssoUrl接口
+请求类型: GET
+传入参数: authCode = 'xxxx(从dd.runtime.permission.requestAuthCode得到的code)'
+返回数据如下:
+
 ```js
 {
   content: {},
