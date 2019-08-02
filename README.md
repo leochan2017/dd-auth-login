@@ -136,4 +136,7 @@ ddAuthLogin.login({
 
 ## :see_no_evil: 相关链接
 
+- [Github Pages](https://leochan2017.github.io/dd-auth-login/)
+- [仓库地址](https://github.com/leochan2017/dd-auth-login)
+- [NPM主页](https://www.npmjs.com/package/dd-auth-login)
 - [钉钉开放平台](https://open-doc.dingtalk.com/)
