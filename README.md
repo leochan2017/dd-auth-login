@@ -50,8 +50,9 @@ import * as dd from 'dingtalk-jsapi'; // 此方式为整体加载，也可按需
 
 如果你是webpack等环境
 ```shell
-npm i dd-auth-login
+npm install dd-auth-login --save
 ```
+
 
 ```js
 import ddAuthLogin from 'dd-auth-login'
