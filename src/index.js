@@ -261,6 +261,9 @@ export function login(options) {
   _getSign()
 }
 
+// 为了让 import ddAuthLogin from 'dd-auth-login' 生效
+export default { login }
+
 // export function otherAIP() {
 //   return xxx
 // }
