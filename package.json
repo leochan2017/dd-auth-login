@@ -1,6 +1,6 @@
 {
   "name": "dd-auth-login",
-  "version": "1.0.6",
+  "version": "1.0.7",
   "description": "最好用的钉钉免登签名js库",
   "main": "./dist/dd-auth-login.min.js",
   "module": "/src/index.js",
