@@ -1,8 +1,10 @@
 # [dd-auth-login](https://github.com/leochan2017/dd-auth-login)
 
 ![By Leo](https://img.shields.io/badge/Powered_by-Leo-red.svg?style=flat) 
-![凑图标](https://travis-ci.org/Alamofire/Alamofire.svg?branch=master)
+![npm](https://img.shields.io/npm/dt/dd-auth-login)
+![GitHub file size in bytes](https://img.shields.io/github/size/leochan2017/dd-auth-login/dist/dd-auth-login.min.js)
 ![GitHub last commit](https://img.shields.io/github/last-commit/leochan2017/dd-auth-login.svg)
+![GitHub package.json version](https://img.shields.io/github/package-json/v/leochan2017/dd-auth-login)
 ![Hex.pm](https://img.shields.io/hexpm/l/plug.svg)
 
 最好用的钉钉免登签名js库
