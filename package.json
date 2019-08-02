@@ -1,8 +1,8 @@
 {
   "name": "dd-auth-login",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "description": "For DinkTalk's login javascript lib.",
-  "main": "index.js",
+  "main": "./dist/dd-auth-login.min.js",
   "scripts": {
     "build": "webpack --config webpack.config.js"
   },
