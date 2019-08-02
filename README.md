@@ -20,14 +20,13 @@
 ## :rocket: 快速开始
 ### 1. 引入钉钉JSAPI
 
-如果你是浏览器环境
+1.1如果你是浏览器环境
 
 ```html
 <script src="https://g.alicdn.com/dingding/dingtalk-jsapi/2.7.13/dingtalk.open.js"></script>
 ```
 
-
-如果你是webpack等环境
+1.2如果你是webpack等环境
 
 ```shell
 npm install dingtalk-jsapi --save
@@ -41,24 +40,27 @@ import * as dd from 'dingtalk-jsapi'; // 此方式为整体加载，也可按需
 
 ### 2. 引入本库
 
-如果你是浏览器环境
+2.1如果你是浏览器环境
 
 ```html
 <script src="./dist/dd-auth-login.min.js"></script>
 ```
 
+2.2如果你是webpack等环境
 
-如果你是webpack等环境
 ```shell
 npm install dd-auth-login --save
 ```
-
-
+或者
+```shell
+yarn add dd-auth-login
+```
+然后
 ```js
 import ddAuthLogin from 'dd-auth-login'
 ```
 
-如果你是requirejs环境
+2.3如果你是requirejs环境
 
 ```js
 requirejs(['./dist/dd-auth-login.min.js'], function (res) {
@@ -139,4 +141,5 @@ ddAuthLogin.login({
 - [Github Pages](https://leochan2017.github.io/dd-auth-login/)
 - [仓库地址](https://github.com/leochan2017/dd-auth-login)
 - [NPM主页](https://www.npmjs.com/package/dd-auth-login)
+- [yarn主页](https://yarn.pm/dd-auth-login)
 - [钉钉开放平台](https://open-doc.dingtalk.com/)
