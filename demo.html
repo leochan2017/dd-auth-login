@@ -13,13 +13,17 @@
     <script>
       console.log('ddAuthLogin', ddAuthLogin)
 
+      // 判断环境
+      console.log('ddAuthLogin.isDD()', ddAuthLogin.isDD())
+
+      // 签名&免登过程
       ddAuthLogin.login({
         debug: true,
         success: function(res) {
-          console.log('免登成功啦啦啦', res)
+          console.log('succ回调', res)
         },
         fail: function(err) {
-          console.log('啊哦，免登失败', err)
+          console.log('fail回调', err)
         }
       })
     </script>

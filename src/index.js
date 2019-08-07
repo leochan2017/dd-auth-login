@@ -1,6 +1,6 @@
 // A auth login js library from Dingtalk
 // Author: Leo
-// Last update: 2019.08.01
+// Last update: 2019.08.07
 
 var __NAME__ = 'ddAuthLogin'
 var _noop = function() {}
@@ -115,7 +115,11 @@ function _ssoLogin(corpId) {
         if (!d || !d.code) {
           var str = '免登过程中获取钉钉code失败'
           myObj.debug && logger.error(str)
-          myObj.fail(str)
+          myObj.fail({
+            isDD: true,
+            isLogin: false,
+            msg: str
+          })
           return
         }
 
@@ -128,20 +132,38 @@ function _ssoLogin(corpId) {
             if (!res) {
               var str = '免登接口集合返回失败'
               myObj.debug && logger.error(str)
-              myObj.fail(str)
+              myObj.fail({
+                isDD: true,
+                isLogin: false,
+                msg: str
+              })
               return
             }
-            myObj.success('Login Success!')
+            myObj.success({
+              isDD: true,
+              isLogin: true,
+              msg: 'Login Success!'
+            })
           },
           fail: function(error) {
             myObj.debug && logger.error(error)
-            myObj.fail(error)
+            myObj.fail({
+              isDD: true,
+              isLogin: false,
+              msg: 'Login Fail!',
+              content: error
+            })
           }
         })
       },
       onFail: function(error) {
         myObj.debug && logger.error(error)
-        myObj.fail(error)
+        myObj.fail({
+          isDD: true,
+          isLogin: false,
+          msg: 'Login Fail!',
+          content: error
+        })
       }
     })
   })
@@ -163,7 +185,11 @@ function _getSign() {
       if (!res || typeof res == 'undefined') {
         var str = 'sign ajax is no result'
         myObj.debug && logger.error(str)
-        myObj.fail(str)
+        myObj.fail({
+          isDD: true,
+          isLogin: false,
+          msg: str
+        })
         return
       }
 
@@ -172,7 +198,11 @@ function _getSign() {
       if (!_config) {
         var str = 'sign: res.content is no data'
         myObj.debug && logger.error(str)
-        myObj.fail(str)
+        myObj.fail({
+          isDD: true,
+          isLogin: false,
+          msg: str
+        })
         return
       }
 
@@ -187,51 +217,72 @@ function _getSign() {
 
       dd.error(function(error) {
         myObj.debug && logger.error(error)
-        myObj.fail(error)
+        myObj.fail({
+          isDD: true,
+          isLogin: false,
+          msg: 'dd.error',
+          content: error
+        })
       })
 
       // 如果已经登录，则返回true，此时可以不用调用sso
       if (_config.hasLogin) {
-        myObj.success('Login Success!')
+        myObj.success({
+          isDD: true,
+          isLogin: true,
+          msg: 'Login Success!'
+        })
         return
       }
 
       _ssoLogin(_config.corpId)
     },
-    fail: function(err) {
-      var str = 'sign ajax fail:' + JSON.stringify(err)
+    fail: function(error) {
+      var str = 'sign ajax fail:' + JSON.stringify(error)
       myObj.debug && logger.error(str)
-      myObj.fail(err)
+      myObj.fail({
+        isDD: true,
+        isLogin: false,
+        msg: 'sign ajax fail',
+        content: error
+      })
     }
   })
 }
 
 /**
- * 钉钉环境检查
- * false: 在钉钉环境
- * 有值 | true : 非钉钉环境
+ * 获取当前浏览器UA信息
  */
-function _isNotDd() {
-  if (typeof dd === 'undefined') return '请先引入钉钉的JSAPI再调用本库蛤'
-  if (!dd.version) return '非钉钉环境本库不会运行哦'
-  return false
+function _getUA() {
+  return typeof navigator !== 'undefined' && ((navigator && (navigator.userAgent || navigator.swuserAgent)) || '')
+}
+
+/**
+ * 获取当前是否引用钉钉库
+ */
+function _isImportDD() {
+  return typeof dd === 'object'
+}
+
+/**
+ * 获取当前是否钉钉环境
+ */
+export function isDD() {
+  return /DingTalk/i.test(_getUA())
 }
 
 /**
  * 初始化函数
  */
 export function login(options) {
-  var ndd = _isNotDd()
-  if (ndd) {
-    logger.error(ndd)
-    myObj.fail(ndd)
-    return
-  }
-
   if (typeof options !== 'object') {
     var str = '啥参数都不传嘛?'
     logger.error(str)
-    myObj.fail(str)
+    myObj.fail({
+      isDD: true,
+      isLogin: false,
+      msg: str
+    })
     return
   }
 
@@ -270,6 +321,28 @@ export function login(options) {
 
   myObj.debug && logger.log('当前入参:', myObj)
 
+  if (!isDD()) {
+    var str = '非钉钉环境本库不会继续签名和免登哦'
+    myObj.debug && logger.warn(str)
+    myObj.success({
+      isDD: false,
+      isLogin: false,
+      msg: str
+    })
+    return
+  }
+
+  if (!_isImportDD()) {
+    var str = '请先完全引入钉钉 js 库再调用本库'
+    myObj.debug && logger.error(str)
+    myObj.fail({
+      isDD: true,
+      isLogin: false,
+      msg: str
+    })
+    return
+  }
+
   _getSign()
 }
 
@@ -278,4 +351,4 @@ export function login(options) {
 // }
 
 // 为了让 import ddAuthLogin from 'dd-auth-login' 生效
-export default { login }
+export default { login, isDD }

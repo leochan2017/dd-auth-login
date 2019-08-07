@@ -70,7 +70,7 @@ requirejs(['./dist/dd-auth-login.min.js'], function (res) {
 })
 ```
 
-### 3. 调用本库
+### 3. 调用 login 函数进行签名&免登
 
 ```js
 ddAuthLogin.login({
@@ -85,7 +85,13 @@ ddAuthLogin.login({
 
 
 ## :bookmark_tabs: AIP文档
+### ddAuthLogin.isDD()
+返回当前是否钉钉环境; true: 是, false: 否
 
+### ddAuthLogin.login()
+签名&免登过程
+
+#### 传入参数
 | 参数名 | 类型 | 必填 | 默认值 | 说明 |
 | ----- | --- | ---- | ----- | --- |
 | debug | boolean | 否 | false | 是否开启 debug 模式 |
@@ -96,6 +102,15 @@ ddAuthLogin.login({
 | jsApiList | array | 否 | 所有钉钉 API | 要签名的功能列表 |
 | success | function | 否 | 空 | 成功回调 |
 | fail | function | 否 | 空 | 失败回调 |
+
+#### 返回参数
+| 参数名 | 类型 | 说明 |
+| ----- | --- | --- |
+| isDD | boolean | 当前是否钉钉环境 |
+| isLogin | boolean | 当前是否免登成功 |
+| msg | string | 对本次返回进行文字描述 |
+| content | object | 失败时的详细信息（仅在失败时返回） |
+|  |  |  |
 
 
 ## :loudspeaker: 接口说明(给后端同学看)
