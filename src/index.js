@@ -1,11 +1,12 @@
 // A auth login js library from Dingtalk
 // Author: Leo
-// Last update: 2019.08.07
+// Last update: 2019.08.09
 
 var __NAME__ = 'ddAuthLogin'
 var _noop = function() {}
 
 var myObj = {
+  dd: null,
   libName: __NAME__,
   debug: false,
   // 请求签名地址
@@ -108,8 +109,8 @@ function _ajax(options) {
  * 进行免登
  */
 function _ssoLogin(corpId) {
-  dd.ready(function() {
-    dd.runtime.permission.requestAuthCode({
+  myObj.dd.ready(function() {
+    myObj.dd.runtime.permission.requestAuthCode({
       corpId: corpId,
       onSuccess: function(d) {
         if (!d || !d.code) {
@@ -206,7 +207,7 @@ function _getSign() {
         return
       }
 
-      dd.config({
+      myObj.dd.config({
         agentId: _config.agentId,
         corpId: _config.corpId,
         timeStamp: _config.timeStamp,
@@ -215,7 +216,7 @@ function _getSign() {
         jsApiList: myObj.jsApiList
       })
 
-      dd.error(function(error) {
+      myObj.dd.error(function(error) {
         myObj.debug && logger.error(error)
         myObj.fail({
           isDD: true,
@@ -258,13 +259,6 @@ function _getUA() {
 }
 
 /**
- * 获取当前是否引用钉钉库
- */
-function _isImportDD() {
-  return typeof dd === 'object'
-}
-
-/**
  * 获取当前是否钉钉环境
  */
 export function isDD() {
@@ -284,6 +278,12 @@ export function login(options) {
       msg: str
     })
     return
+  }
+
+  if (typeof options.dd === 'object') {
+    myObj.dd = options.dd
+  } else if (typeof window.dd === 'object') {
+    myObj.dd = dd
   }
 
   if (typeof options.debug !== 'undefined') {
@@ -332,7 +332,7 @@ export function login(options) {
     return
   }
 
-  if (!_isImportDD()) {
+  if (!myObj.dd) {
     var str = '请先完全引入钉钉 js 库再调用本库'
     myObj.debug && logger.error(str)
     myObj.fail({

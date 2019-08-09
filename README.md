@@ -95,6 +95,7 @@ ddAuthLogin.login({
 | 参数名 | 类型 | 必填 | 默认值 | 说明 |
 | ----- | --- | ---- | ----- | --- |
 | debug | boolean | 否 | false | 是否开启 debug 模式 |
+| dd | object | 否 | null | 钉钉的JS SDK，由于require JS使用的问题，dd 变量没有暴露到全局，需要传入此参数 |
 | signUrl | string | 否 | '/data/labc-biz-dingding/dingTalk/getAuthInfo' | 请求签名地址 |
 | signParamName | string | 否 | 'url' | 请求签名参数名称 |
 | ssoUrl | string | 否 | '/data/labc-biz-dingding/dingTalk/sso' | 请求sso地址 |
