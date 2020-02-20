@@ -1,31 +1,34 @@
 <!DOCTYPE html>
 <html>
-  <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <meta http-equiv="X-UA-Compatible" content="ie=edge" />
-    <title>Demo</title>
-  </head>
-  <body>
-    <script src="https://g.alicdn.com/dingding/dingtalk-jsapi/2.7.13/dingtalk.open.js"></script>
-    <script src="./dist/dd-auth-login.min.js"></script>
-    <!-- <script src="./src/index.js"></script> -->
-    <script>
-      console.log('ddAuthLogin', ddAuthLogin)
 
-      // 判断环境
-      console.log('ddAuthLogin.isDD()', ddAuthLogin.isDD())
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta http-equiv="X-UA-Compatible" content="ie=edge" />
+  <title>Demo</title>
+</head>
 
-      // 签名&免登过程
-      ddAuthLogin.login({
-        debug: true,
-        success: function(res) {
-          console.log('succ回调', res)
-        },
-        fail: function(err) {
-          console.log('fail回调', err)
-        }
-      })
-    </script>
-  </body>
+<body>
+  <script src="https://g.alicdn.com/dingding/dingtalk-jsapi/2.7.13/dingtalk.open.js"></script>
+  <script src="./dist/dd-auth-login.min.js"></script>
+  <!-- <script src="./src/index.js"></script> -->
+  <script>
+    console.log('ddAuthLogin', ddAuthLogin)
+
+    // 判断环境
+    console.log('ddAuthLogin.isDD()', ddAuthLogin.isDD())
+
+    // 签名&免登过程
+    ddAuthLogin.login({
+      debug: true,
+      success: function (res) {
+        console.log('success回调', res)
+      },
+      fail: function (err) {
+        console.log('fail回调', err)
+      }
+    })
+  </script>
+</body>
+
 </html>
