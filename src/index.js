@@ -3,7 +3,7 @@
 // Last update: 2019.08.09
 
 var __NAME__ = 'ddAuthLogin'
-var _noop = function() {}
+var _noop = function () { }
 
 var myObj = {
   dd: null,
@@ -23,7 +23,7 @@ var myObj = {
   fail: _noop,
   // 要签名的功能列表
   jsApiList: [
-    'runtime.permission.requestAuthCode',
+    // 'runtime.permission.requestAuthCode',
     'biz.util.datepicker',
     'biz.util.timepicker',
     'biz.util.datetimepicker',
@@ -63,12 +63,12 @@ var myObj = {
 var logger =
   typeof console === 'undefined'
     ? {
-        log: _noop,
-        debug: _noop,
-        error: _noop,
-        warn: _noop,
-        info: _noop
-      }
+      log: _noop,
+      debug: _noop,
+      error: _noop,
+      warn: _noop,
+      info: _noop
+    }
     : console
 
 if (!logger.debug) logger.debug = _noop
@@ -84,7 +84,7 @@ function _ajax(options) {
     var xhr = new ActiveXObject('Microsoft.XMLHTTP')
   }
 
-  xhr.onreadystatechange = function() {
+  xhr.onreadystatechange = function () {
     if (xhr.readyState == 4) {
       var status = xhr.status
       if (status >= 200 && status < 300) {
@@ -109,10 +109,10 @@ function _ajax(options) {
  * 进行免登
  */
 function _ssoLogin(corpId) {
-  myObj.dd.ready(function() {
+  myObj.dd.ready(function () {
     myObj.dd.runtime.permission.requestAuthCode({
       corpId: corpId,
-      onSuccess: function(d) {
+      onSuccess: function (d) {
         if (!d || !d.code) {
           var str = '免登过程中获取钉钉code失败'
           myObj.debug && logger.error(str)
@@ -129,7 +129,7 @@ function _ssoLogin(corpId) {
           type: 'GET',
           data: null,
           dataType: 'json',
-          success: function(res) {
+          success: function (res) {
             if (!res) {
               var str = '免登接口集合返回失败'
               myObj.debug && logger.error(str)
@@ -146,7 +146,7 @@ function _ssoLogin(corpId) {
               msg: 'Login Success!'
             })
           },
-          fail: function(error) {
+          fail: function (error) {
             myObj.debug && logger.error(error)
             myObj.fail({
               isDD: true,
@@ -157,7 +157,7 @@ function _ssoLogin(corpId) {
           }
         })
       },
-      onFail: function(error) {
+      onFail: function (error) {
         myObj.debug && logger.error(error)
         myObj.fail({
           isDD: true,
@@ -179,7 +179,7 @@ function _getSign() {
     type: 'GET',
     data: '',
     dataType: 'json',
-    success: function(res) {
+    success: function (res) {
       res = JSON.parse(res)
       myObj.debug && logger.log('后台签名数据返回:', res)
 
@@ -216,16 +216,6 @@ function _getSign() {
         jsApiList: myObj.jsApiList
       })
 
-      myObj.dd.error(function(error) {
-        myObj.debug && logger.error(error)
-        myObj.fail({
-          isDD: true,
-          isLogin: false,
-          msg: 'dd.error',
-          content: error
-        })
-      })
-
       // 如果已经登录，则返回true，此时可以不用调用sso
       if (_config.hasLogin) {
         myObj.success({
@@ -236,9 +226,19 @@ function _getSign() {
         return
       }
 
+      myObj.dd.error(function (error) {
+        myObj.debug && logger.error(error)
+        myObj.fail({
+          isDD: true,
+          isLogin: false,
+          msg: 'dd.error',
+          content: error
+        })
+      })
+
       _ssoLogin(_config.corpId)
     },
-    fail: function(error) {
+    fail: function (error) {
       var str = 'sign ajax fail:' + JSON.stringify(error)
       myObj.debug && logger.error(str)
       myObj.fail({
