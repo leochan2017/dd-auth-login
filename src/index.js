@@ -13,17 +13,23 @@ var myObj = {
   signUrl: '/data/labc-biz-dingding/dingTalk/getAuthInfo',
   // 请求签名参数名称
   signParamName: 'url',
+  // 请求签名的请求方法
+  signMethod: 'GET',
+
   // 请求sso地址
   ssoUrl: '/data/labc-biz-dingding/dingTalk/sso',
   // 请求sso参数名称
   ssoParamName: 'authCode',
+  // 请求sso的请求方法
+  ssoMethod: 'GET',
+
   // 成功回调
   success: _noop,
   // 失败回调
   fail: _noop,
   // 要签名的功能列表
   jsApiList: [
-    // 'runtime.permission.requestAuthCode',
+    'runtime.permission.requestAuthCode',
     'biz.util.datepicker',
     'biz.util.timepicker',
     'biz.util.datetimepicker',
@@ -73,7 +79,7 @@ var logger =
 
 if (!logger.debug) logger.debug = _noop
 
-function _ajax(options) {
+function _ajax (options) {
   options = options || {}
   options.type = (options.type || 'GET').toUpperCase()
   options.dataType = options.dataType || 'json'
@@ -108,7 +114,7 @@ function _ajax(options) {
 /**
  * 进行免登
  */
-function _ssoLogin(corpId) {
+function _ssoLogin (corpId) {
   myObj.dd.ready(function () {
     myObj.dd.runtime.permission.requestAuthCode({
       corpId: corpId,
@@ -126,7 +132,7 @@ function _ssoLogin(corpId) {
 
         _ajax({
           url: myObj.ssoUrl + '?' + myObj.ssoParamName + '=' + d.code,
-          type: 'GET',
+          type: myObj.ssoMethod,
           data: null,
           dataType: 'json',
           success: function (res) {
@@ -173,10 +179,10 @@ function _ssoLogin(corpId) {
 /**
  * 获取免登信息 & 签名
  */
-function _getSign() {
+function _getSign () {
   _ajax({
     url: myObj.signUrl + '?' + myObj.signParamName + '=' + location.href,
-    type: 'GET',
+    type: myObj.signMethod,
     data: '',
     dataType: 'json',
     success: function (res) {
@@ -254,21 +260,21 @@ function _getSign() {
 /**
  * 获取当前浏览器UA信息
  */
-function _getUA() {
+function _getUA () {
   return typeof navigator !== 'undefined' && ((navigator && (navigator.userAgent || navigator.swuserAgent)) || '')
 }
 
 /**
  * 获取当前是否钉钉环境
  */
-export function isDD() {
+export function isDD () {
   return /DingTalk/i.test(_getUA())
 }
 
 /**
  * 初始化函数
  */
-export function login(options) {
+export function login (options) {
   if (typeof options !== 'object') {
     var str = '啥参数都不传嘛?'
     logger.error(str)

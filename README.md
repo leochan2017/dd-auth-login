@@ -98,8 +98,10 @@ ddAuthLogin.login({
 | dd | object | 否 | null | 钉钉的JS SDK，由于require JS使用的问题，dd 变量没有暴露到全局，需要传入此参数 |
 | signUrl | string | 否 | '/data/labc-biz-dingding/dingTalk/getAuthInfo' | 请求签名地址 |
 | signParamName | string | 否 | 'url' | 请求签名参数名称 |
+| signMethod | string | 否 | 'GET' | 请求签名方法 |
 | ssoUrl | string | 否 | '/data/labc-biz-dingding/dingTalk/sso' | 请求sso地址 |
 | ssoParamName | string | 否 | 'authCode' | 请求sso参数名称 |
+| ssoMethod | string | 否 | 'GET' | 请求sso方法 |
 | jsApiList | array | 否 | 所有钉钉 API | 要签名的功能列表 |
 | success | function | 否 | 空 | 成功回调 |
 | fail | function | 否 | 空 | 失败回调 |
