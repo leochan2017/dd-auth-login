@@ -1,6 +1,6 @@
 // A auth login js library from Dingtalk
 // Author: Leo
-// Last update: 2019.08.09
+// Last update: 2022.09.29
 
 var __NAME__ = 'ddAuthLogin'
 var _noop = function () { }
